@@ -1,0 +1,179 @@
+LINEAR ALGEBRA
+#####################################################################################################
+u.hat is a unit vector
+Projection value of x on u = u.T * x
+with direction it is u.T * x along u.hat
+
+=> projection value = u.T * x
+=> projection vector = u.T * x * u.hat
+
+
+#####################################################################################################
+Linear transformation
+
+if A is a transformation matrix with basis b then A*[x](B) = x
+where x is with respect to the usual basis e1,e2, so on and [x](B) = x with respect to basis matrix B i.e in world of B.
+B = [col vector b1, col vector b2, ....] where b1 is the new e1, and so on...
+
+[x](B) = (q1,q2,q3,...)
+
+=> x = B * [x](B)						(EQ 1)			
+(x = q1*b1 + q2*b2 + ......)
+
+similarly,
+=> [x](B) = B^(-1) * x  					(EQ 2)
+(B inverse times x gives x wrt b)
+
+#####################################################################################################
+Eigen vectors and values
+
+Eigen Vector are the vectors that do not change in direction when the cordinate axes are transformed. i.e when basis are changed.
+that implies A*v = k*v (k is a scalar and v is such vector) hence v is eigen vector.
+whereas k is called eigen value (the amount of stretch or compression including sign)
+
+so if V is a mtrix with all eigen vectors as columns and D - delta is diagonal matrix with eigen values in corresponding columns then,
+A*V = V*D
+
+####################################################################################################
+Eigen value decomposition
+
+a transformation matrix A can be written in terms of eigens. That means V and Delta matrices completely define A.
+
+we know that A*V = V*D
+
+A = V * D * V^(-1)
+
+special case if A is orthogonal i.e A*A.T = I that implies A.T = A^-1
+=> A = V * D * V.T
+
+####################################################################################################
+Transformation matrix wrt basis
+
+If A is a transformation matrix in real world, then what would it be in a World of B (with basis as b1,b2, so on)
+Here understand that the transformation would affect the point same in any world. i.e if input is (2,5) wrt Real world and A transforms it to (4,9) wrp R world then irrespective of which is the reference cordinate system, if (2,5) is a point in world B, the required transformation matrix A' should transform it to (4,9) in world B. This means that the function T doesn't change. i.e T(2,5) = (4,9) and T([2,5](B)) = [4,9](B) = [T(2,5)](B)
+
+T(x) = A * x (where T is a function and A is the transormation matrix)
+
+So, let x be input vecotr in real world
+T(x) = A * x 
+[T(x)](B) = A' * [x](B)
+(meaning, Transformation T in world of B)
+
+=> A' * [x](B) = [T(x)](B)          (as explained above)
+=> A' * [x](B) = [A * x](B)
+=> A' * [x](B) = B^-1 * A * x       		(since [z](B) = B^-1 * z)
+=> A' * [x](B) = B^-1 * A * B * [x](B)		(since z = B * [x](B))
+=> A' = B^-1 * A * B
+
+
+####################################################################################################
+Diagonalisation
+
+a matrix A can be diagonalised if in some basis world B it can be written as a diagonal matrix
+
+Special case: We now find what is B if A is symmetric
+We are going to prove that If A is symmetric then B is the eigen vectors of A as basis i.e in world of V
+
+we have A*V = V*D
+=> D = V^-1 * A * V
+
+and now what is A in world of V?
+from the above part of transforming matrix in world of B
+
+A' = V^-1 * A * V
+
+=> A' = D (which is a diagonal matrix with eigen values as its diagonal elements)
+
+#####################################################################################################
+PRINCIPLE COMPONENT ANALYSIS
+
+Notes to know before PCA
+
+Projection of Data points vectors [x1,x2,x3,....] along u
+proj(xi) = u.T * xi
+proj(xi) with direction = u.T * xi * u.hat
+
+proj(mean) = u.T * m
+proj(mean) with direction of u = u.T * m * u.hat
+
+In the projected data, 
+variance of proj = 1/N * sigma[(proj(xi)-proj(m))^2]
+=> variance of proj = 1/N * sigma[(u.T*xi - u.T*m)^2]
+=> variance of proj = 1/N * sigma[(u.T * (xi-m))^2]
+since for 1by1 matrix A*A.T = A^2
+=> variance of proj = 1/N * sigma[(u.T * (xi-m)) * (u.T * (xi-m)).T]
+=> variance of proj = 1/N * sigma[(u.T * (xi-m)) * ((xi-m).T * u.T.T)]
+=> variance of proj = 1/N * sigma[(u.T * (xi-m)) * ((xi-m).T * u)]
+=> variance of proj = 1/N * sigma[(u.T * (xi-m) * (xi-m).T * u]
+since u is independent of i
+=> variance of proj = 1/N * (u.T * sigma[(xi-m) * (xi-m).T] * u)
+=> variance of proj = u.T * covar matrix of original data * u
+=> variance of proj = u.T * S * u
+
+for principal component analysis u must be chosen such that the variance of the projected data is maximum.
+
+So maximise u.T * S * u with constraint u being unit vector i.e u.T * u = 1
+using legrange's gives us a solution S * u =  legrange multiplier * u
+it is similar to S * u = eigen value * u
+=> u can be the eigen vectors of S
+But which is the best solution?? since we know that lagrange multiplier shows how much the variation of variable x contributes to the variation of y, here it means that lagrange multiplier show how much variance is affected by selecting u. since the legrange multiplier shd be maximum, comparing it to the eigen equation, the maximum possible lagrange multiplier is the maximum possible eigen value.
+hence the corresponding eigen vector would maximise the variance of the projected data.
+
+#####################################################################################################
+
+METHOD 2:
+
+We have Covariance matrix C in for data D in real world
+We need to find a good world B where the variance of the data is preserved.
+Data should be preserved means it shd be maximum along the cordinate axis we would consider.
+Which means, covariance should be 0. => diagonalisation.
+D is transformed to D' (i.e to the world of B)
+
+=> since C is a symmetric matrix, C can be diagonalised if Eigen vectors are considered as basis.
+=> C will become Diagonal matrix.
+So if all the data points are in the world of eigen vectors of C, then covariance will be along the eigen vectors considered as cordinate axis.    
+#####################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
