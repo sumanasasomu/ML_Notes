@@ -8,6 +8,24 @@ NOTE:
 
 linear trans vs. basis change
 http://www.boris-belousov.net/2016/05/31/change-of-basis/
+
+After reading the article, consider this.
+[b1,b2,b3,...] is the matrix that transforms e1,e2,e3 to b1,b2,b3...
+now B is a transformation matrix that transforms e1,e2,... to b1,b2,...
+
+if x = (p,q)
+B*x = is p units along b1 and q units along b2
+B*x gives (p',q')
+
+If we draw b1 and b2 horizontally and vertically respectively in a new paper, 
+(p',q') will just look like (p,q) drawn with X and y axis as Horizontal and vertical axis.
+
+Conclusion: 
+By drawing both (p,q) and (p',q') on the same graph, that means, using B p,q is transformed to p',q'
+i.e p units e1, q units e2 is transformed to p' units e1, q' units of e2
+
+By drawing on diff plots, then you can understand that (p,q) wrt B is equal to (p',q') wrt Original X and Y axes.
+
 #####################################################################################################
 u.hat is a unit vector
 Projection value of x on u = u.T * x
