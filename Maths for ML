@@ -136,16 +136,24 @@ hence the corresponding eigen vector would maximise the variance of the projecte
 #####################################################################################################
 
 METHOD 2:
+https://medium.com/@aptrishu/understanding-principle-component-analysis-e32be0253ef0
 
 We have Covariance matrix C in for data D in real world
-We need to find a good world B where the variance of the data is preserved.
-Data should be preserved means it shd be maximum along the cordinate axis we would consider.
-Which means, covariance should be 0. => diagonalisation.
-D is transformed to D' (i.e to the world of B)
+We have to tranform data D to D' such that C' is a diagonal matrix. (coz we need correlation to be minimum and
+variance along axes to be max for data to be preserved. Which means, covariance should be 0. => diagonalisation.)
 
-=> since C is a symmetric matrix, C can be diagonalised if Eigen vectors are considered as basis.
-=> C will become Diagonal matrix.
-So if all the data points are in the world of eigen vectors of C, then covariance will be along the eigen vectors considered as cordinate axis.    
+Thus we need to diagonalise C. It can be diagonalised in basis B. So let us also say D transformed to D' => T(D) = PD = D'
+by solving, C'= P.T * C * P (beacuse the new data is D' = PD)
+
+TRICK: 
+If we use eigen matrix of C as P
+C' = P.T * C * P becomes
+C' = V.T * C * V
+here since C is symmetric, DeltaMatrix D = V^-1 * C * V
+Also, V is orthogonal. so V^-1 = V.T
+
+=> D = V^-1 * C * V = V.T * C * V = C'
+=> C' is diagonalised by the use of V as P   
 #####################################################################################################
 
 
