@@ -1,4 +1,13 @@
 LINEAR ALGEBRA
+NOTE:
+* matrix multiplication
+.T transpose
+.hat means unit vector
+
+
+
+linear trans vs. basis change
+http://www.boris-belousov.net/2016/05/31/change-of-basis/
 #####################################################################################################
 u.hat is a unit vector
 Projection value of x on u = u.T * x
@@ -9,16 +18,21 @@ with direction it is u.T * x along u.hat
 
 
 #####################################################################################################
-Linear transformation
+Change of basis:
+Same vector x has different cordinates in different worlds.
+xbar = [e1,e2]*[p1,p2].T
+xbar = [b1,b2]*[p'1,p'2].T
 
-if A is a transformation matrix with basis b then A*[x](B) = x
+whenever I write x it means cordinates of xbar in real world. [x](B) means cordinates of xbar in B world
+
+if B is vector with columns as basis vectors then B*[x](B) = x
 where x is with respect to the usual basis e1,e2, so on and [x](B) = x with respect to basis matrix B i.e in world of B.
 B = [col vector b1, col vector b2, ....] where b1 is the new e1, and so on...
 
-[x](B) = (q1,q2,q3,...)
+x in real world = (p1,p2,p3,....)
+x cords in wolrd of B = [x](B) = (p'1,p'2,p'3,...)
 
-=> x = B * [x](B)						(EQ 1)			
-(x = q1*b1 + q2*b2 + ......)
+=> x = B * [x](B)					      	(EQ 1)			
 
 similarly,
 => [x](B) = B^(-1) * x  					(EQ 2)
@@ -27,11 +41,11 @@ similarly,
 #####################################################################################################
 Eigen vectors and values
 
-Eigen Vector are the vectors that do not change in direction when the cordinate axes are transformed. i.e when basis are changed.
+Eigen Vector are the vectors that do not change in direction when the cordinate axes are transformed.
 that implies A*v = k*v (k is a scalar and v is such vector) hence v is eigen vector.
 whereas k is called eigen value (the amount of stretch or compression including sign)
 
-so if V is a mtrix with all eigen vectors as columns and D - delta is diagonal matrix with eigen values in corresponding columns then,
+so if V is a matrix with all eigen vectors as columns and D - delta is diagonal matrix with eigen values in corresponding columns then,
 A*V = V*D
 
 ####################################################################################################
